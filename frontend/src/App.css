@@ -2,13 +2,14 @@
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
-  background: #e5f2f7; /* Lightest Blue - Background */
+  background: #FFFFFF; /* Lightest Blue - Background */
+  padding: 0;
   color: #02577A; /* Deep Blue Text */
 }
 
 /* Navigation Bar */
 .top-nav {
-  background: #89D6FB; /* Soft Blue - Header */
+  background: transparent; /* Transparent background */
   padding: 15px 0;
   display: flex;
   justify-content: center;
@@ -17,10 +18,11 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  box-shadow: 0px 4px 6px rgba(2, 87, 122, 0.2);
+  box-shadow: none; /* Remove shadow */
   z-index: 1000;
 }
 
+/* Navigation Bar Links */
 .top-nav ul {
   list-style: none;
   margin: 0;
@@ -36,7 +38,7 @@ body {
 
 .top-nav a {
   text-decoration: none;
-  color: #01303F; /* Dark Text for contrast */
+  color: white; /* White text */
   font-size: 18px;
   font-weight: bold;
   transition: 0.3s;
@@ -44,25 +46,47 @@ body {
   border-radius: 5px;
 }
 
+/* Hover Effect - Dark Blue Background with White Text */
 .top-nav a:hover {
-  background: #02A9F7; /* Interactive Vibrant Blue */
-  color: #D4F0FC; /* Light Text on Hover */
-  box-shadow: 0px 2px 8px rgba(1, 48, 63, 0.2);
+  background: #01303F; /* Dark Blue */
+  color: white; /* White text on hover */
+  box-shadow: 0px 2px 8px rgba(1, 48, 63, 0.4);
 }
 
 /* Main Content */
 .content {
   text-align: center;
-  padding: 80px 20px;
+  position: relative;
+  background: white;
+  width: 100%;
+
 }
 
+/* Title Styling */
+.title {
+  width: 100%;
+  height: 10%;
+  position: absolute;
+  float: inline-start;
+  top: 25%;
+  z-index: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Playfair Display", serif;
+  color: white; /* Darkest Blue */
+  text-align: center;
+
+}
 
 /* Page Content Box */
 .page-container {
-  max-width: 80%;
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
   margin: 0 auto;
   padding: 20px;
-  background: rgba(137, 214, 251, 0.2); /* Soft Transparent Blue */
+  background: white; /* Soft Transparent Blue */
   border-radius: 12px;
   box-shadow: 0px 4px 8px rgba(1, 48, 63, 0.2);
 }
@@ -110,30 +134,66 @@ body {
   }
 }
 
-.home-container {
-  position: relative;
+.vb{
   width: 100%;
-  height: 100vh; /* Full screen height */
-  overflow: hidden;
+
 }
 
-.background-video {
-  position: absolute;
-        right: 0;
-        bottom: 0;
-        z-index: -1;
-        margin-bottom: -200px;
+video{
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+  z-index: -1;
 }
-
-.title {
+.overlay{
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-size: 3rem;
-  font-family: "Poppins", sans-serif;
+  width: 100%;
+  height: 75%;
+  /*background-color: rgba(0,0,0,0.5);*/
+  pointer-events: none;
+}
+.about-section {
+  background: white; /* White background */
   text-align: center;
-  z-index: 1; /* Ensures text is visible above the video */
+  margin: 0;
+  padding: 10px 5%;
+  width: 45%;
+  z-index: 2;
 }
 
+.about-title {
+  font-size: 2.5rem;
+  font-family: 'Merriweather';
+  color: #01303F; /* Dark Blue */
+  text-align: left;
+  font-weight: bold;
+}
+
+.about-image{
+  width: 40%;
+  max-width: 400px;
+  align-items: end;
+}
+
+img{
+  width:40%;
+  margin:0;
+  padding: 10px 5%;
+  float: right;
+  top: 50%;
+  align-content: end;
+
+}
+
+
+.about-content {
+  font-size: 1.4rem;
+  font-family: 'Merriweather';
+  float: left;
+  color: #02577A; /* Deep Blue */
+  background-color: #FFFFFF;
+  max-width: 800px;
+  align-content: initial;
+  text-align: left;
+  line-height: 1.6;
+}
