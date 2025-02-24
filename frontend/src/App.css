@@ -1,42 +1,87 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* General Styling */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: #040F0F; /* Rich Black - Dark background */
+  color: #F5F5DC; /* Cream - Soft contrast text */
+}
+
+/* Navigation Bar */
+.top-nav {
+  background: #7B68EE; /* Medium Slate Blue - Vibrant header */
+  padding: 15px 0;
   text-align: center;
+  box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.top-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.top-nav li {
+  margin: 0 20px;
+}
+
+.top-nav a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  transition: 0.3s;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.top-nav a:hover {
+  background: #CCCCFF; /* Periwinkle - Soft hover effect */
+  color: #040F0F;
+  box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.2);
+}
+
+/* Main Content */
+.content {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+/* Title Styling */
+.title {
+  font-size: 48px;
+  font-family: "Playfair Display", serif;
+  color: #FFFFFF; /* White - Bold contrast title */
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* Button Styles */
+.button {
+  background: #7B68EE; /* Medium Slate Blue */
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.button:hover {
+  background: #CCCCFF; /* Periwinkle */
+  color: #040F0F;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .top-nav ul {
+    flex-direction: column;
   }
-  to {
-    transform: rotate(360deg);
+
+  .top-nav li {
+    margin: 10px 0;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
