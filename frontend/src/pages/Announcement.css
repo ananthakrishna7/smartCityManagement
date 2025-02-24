@@ -1,0 +1,40 @@
+.container-fluid {
+  background-color: #f8f9fa;
+}
+
+h1 {
+  font-family: "Arial", sans-serif;
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.tab-btn {
+  font-weight: bold;
+  margin: 0 10px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-title {
+  font-size: 1.25rem;
+}
+
+.card-text {
+  color: #555;
+}
+
+.badge {
+  font-size: 0.85rem;
+}
+
+.shadow-lg {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
