@@ -56,14 +56,6 @@ body {
   padding: 80px 20px;
 }
 
-/* Title Styling */
-.title {
-  font-size: 48px;
-  font-family: "Playfair Display", serif;
-  color: #01303F; /* Darkest Blue */
-  text-align: center;
-  margin-top: 50px;
-}
 
 /* Page Content Box */
 .page-container {
@@ -117,3 +109,31 @@ body {
     font-size: 36px;
   }
 }
+
+.home-container {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full screen height */
+  overflow: hidden;
+}
+
+.background-video {
+  position: absolute;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        margin-bottom: -200px;
+}
+
+.title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 3rem;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  z-index: 1; /* Ensures text is visible above the video */
+}
+
