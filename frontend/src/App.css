@@ -11,6 +11,7 @@ body {
 .top-nav {
   background: transparent; /* Transparent background */
   padding: 15px 0;
+  transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,6 +22,13 @@ body {
   box-shadow: none; /* Remove shadow */
   z-index: 1000;
 }
+
+/* Navbar when scrolled or on other pages */
+.top-nav.scrolled {
+  background: rgba(1, 48, 63, 0.9); /* Dark blue with slight transparency */
+  box-shadow: 0px 4px 8px rgba(1, 48, 63, 0.4);
+}
+
 
 /* Navigation Bar Links */
 .top-nav ul {
@@ -48,7 +56,7 @@ body {
 
 /* Hover Effect - Dark Blue Background with White Text */
 .top-nav a:hover {
-  background: #01303F; /* Dark Blue */
+  background: #001820; /* Dark Blue */
   color: white; /* White text on hover */
   box-shadow: 0px 2px 8px rgba(1, 48, 63, 0.4);
 }
