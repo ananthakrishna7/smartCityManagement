@@ -1,56 +1,67 @@
+// Announcement.jsx
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../App.css"
 import "./Announcement.css";
 
-const announcementsData = [
+const announcements = [
   {
-    id: 1,
     title: "Water Supply Maintenance",
-    description: "Scheduled maintenance on 25th Feb from 10 AM to 4 PM.",
+    description:
+      "Scheduled maintenance on 25th Feb from 10 AM to 4 PM. Please store water accordingly.",
+    date: "Feb 25, 2024",
+    type: "alert",
   },
   {
-    id: 2,
     title: "Traffic Diversion",
-    description: "Diversion due to metro construction near main junction.",
+    description:
+      "Temporary diversion due to metro construction near main junction. Expected duration: 2 weeks.",
+    date: "Feb 23, 2024",
+    type: "info",
   },
   {
-    id: 3,
     title: "Public Meeting",
-    description: "Public meeting for feedback on community facilities.",
+    description:
+      "Join us for a public meeting to discuss and provide feedback on community facilities improvements.",
+    date: "Mar 1, 2024",
+    type: "success",
   },
   {
-    id: 4,
     title: "Park Renovation",
-    description: "Renovation work in Central Park starts next week.",
+    description:
+      "Central Park renovation begins next week. New features include fitness zones and children's play area.",
+    date: "Feb 28, 2024",
+    type: "info",
   },
   {
-    id: 5,
     title: "Waste Collection Update",
-    description: "New waste collection schedule for weekends.",
+    description:
+      "New weekend waste collection schedule: Dry waste - Saturday, Wet waste - Sunday.",
+    date: "Feb 22, 2024",
+    type: "success",
   },
   {
-    id: 6,
     title: "Water Supply Alert",
-    description: "Water supply issue resolved in sector 3.",
+    description:
+      "Water supply issue in sector 3 has been resolved. Normal supply resumed.",
+    date: "Feb 21, 2024",
+    type: "alert",
   },
 ];
 
-const Announcements = () => {
+const Announcement = () => {
   return (
-    <div className="container-fluid p-5 bg-light">
-      <h1 className="text-center mb-5">City Announcements</h1>
-      <div className="row">
-        {announcementsData.map((announcement) => (
-          <div key={announcement.id} className="col-md-4 mb-4">
-            <div className="card shadow-lg">
-              <div className="card-body">
-                <h5 className="card-title text-primary">
-                  {announcement.title}
-                </h5>
-                <p className="card-text">{announcement.description}</p>
-              </div>
-            </div>
+    <div className="announcement-container">
+      <h1 className="announcement-title">🔔 City Announcements</h1>
+      <p className="announcement-subtitle">
+        Stay informed about important updates and announcements from your city
+        administration.
+      </p>
+
+      <div className="announcement-grid">
+        {announcements.map((item, index) => (
+          <div key={index} className={`announcement-card ${item.type}`}>
+            <h3 className="announcement-card-title">{item.title}</h3>
+            <p className="announcement-card-description">{item.description}</p>
+            <p className="announcement-card-date">📅 {item.date}</p>
           </div>
         ))}
       </div>
@@ -58,4 +69,4 @@ const Announcements = () => {
   );
 };
 
-export default Announcements;
+export default Announcement;
