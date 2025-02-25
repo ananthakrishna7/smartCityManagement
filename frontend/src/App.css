@@ -25,7 +25,7 @@ body {
 
 /* Navbar when scrolled or on other pages */
 .top-nav.scrolled {
-  background: rgba(1, 48, 63, 0.9); /* Dark blue with slight transparency */
+  background: rgba(1, 48, 63); /* Dark blue with slight transparency */
   box-shadow: 0px 4px 8px rgba(1, 48, 63, 0.4);
 }
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 import "./App.css";
+import Login from "./pages/login";
 import Home from "./pages/Home";
 import Transportation from "./pages/Transportation";
 import Forum from "./pages/Forum";
@@ -24,6 +25,9 @@ function Navbar() {
   return (
     <nav className={`top-nav ${scrolled || location.pathname !== "/" ? "scrolled" : ""}`}>
       <ul>
+      <li>
+          <Link to="/login">Login</Link>
+        </li>
         <li>
           <Link to="/">Home</Link>
         </li>
@@ -54,6 +58,7 @@ function App() {
         <Navbar />
         <div className="content">
           <Routes>
+          <Route path="/login" element={<Login />} />
             <Route path="/" element={<Home />} />
             <Route path="/transportation" element={<Transportation />} />
             <Route path="/forum" element={<Forum />} />
