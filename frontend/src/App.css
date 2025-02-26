@@ -1,8 +1,13 @@
 /* General Styling */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
-  background: #FFFFFF; /* Lightest Blue - Background */
+  background: white; 
+  height: 100%;/* Lightest Blue - Background */
   padding: 0;
   color: #02577A; /* Deep Blue Text */
 }
@@ -94,9 +99,8 @@ body {
   height: 100%;
   margin: 0 auto;
   padding: 20px;
-  background: white; /* Soft Transparent Blue */
+  background-color: white; /* Soft Transparent Blue */
   border-radius: 12px;
-  box-shadow: 0px 4px 8px rgba(1, 48, 63, 0.2);
 }
 
 /* Button Styles */
@@ -120,7 +124,7 @@ body {
 /* Footer */
 .footer {
   background: #01303F; /* Darkest Blue */
-  color: #D4F0FC; /* Light Text */
+  color: white; /* Light Text */
   text-align: center;
   padding: 15px;
   margin-top: 50px;
@@ -143,7 +147,7 @@ body {
 }
 
 .vb{
-  width: 99vw;
+  width: 100vw;
   margin-left: -12px;
   overflow: hidden;
   position: relative;
@@ -171,30 +175,38 @@ video{
 .about-section {
   background: white; /* White background */
   text-align: center;
-  margin: 0;
-  padding: 10px 10%;
-  width: 65%;
+  margin-left: 20px;
+  padding: 10px 5px;
+  width: 55%;
   z-index: 2;
 }
 
 .about-title {
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   font-family: 'Merriweather';
   color: #01303F; /* Dark Blue */
   text-align: left;
+  text-decoration: underline;
+  width: 55%;
   font-weight: bold;
 }
 
 .about-image{
-  width: 50%;
+  width: 30%;
   max-width: 400px;
+  position: grid;
+  background-color: white;
   align-items: end;
 }
 
 img{
-  width:40%;
-  margin-top: 25 px;
-  margin-right: -100px;
+  width: 40%;
+  margin-bottom: 150px;
+  margin-top: -60px;
+  margin-right: 50px;
+  height: 70vh;
+  display: flex;
+  overflow: hidden;
   float: right;
   position: grid;
   align-content: end;
@@ -207,7 +219,7 @@ img{
   font-family: 'Merriweather';
   float: left;
   color: #02577A; /* Deep Blue */
-  background-color: #FFFFFF;
+  background-color: white;
   max-width: 800px;
   align-content: initial;
   text-align: left;
