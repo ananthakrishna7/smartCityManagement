@@ -1,6 +1,5 @@
 import React from "react";
 import * as Components from './components';
-import loginbg from '../assets/loginbg.jpg';
 
 function Login() {
     const [signIn, toggle] = React.useState(true);
@@ -8,7 +7,7 @@ function Login() {
          <Components.Container>
              <Components.SignUpContainer signinIn={signIn}>
                  <Components.Form>
-                     <Components.Title1>Create Account</Components.Title1>
+                     <Components.Title>Create Account</Components.Title>
                      <Components.Input type='text' placeholder='Name' />
                      <Components.Input type='email' placeholder='Email' />
                      <Components.Input type='password' placeholder='Password' />
@@ -18,7 +17,7 @@ function Login() {
 
              <Components.SignInContainer signinIn={signIn}>
                   <Components.Form>
-                      <Components.Title1>Sign in</Components.Title1>
+                      <Components.Title>Sign in</Components.Title>
                       <Components.Input type='email' placeholder='Email' />
                       <Components.Input type='password' placeholder='Password' />
                       <Components.Anchor href='#'>Forgot your password?</Components.Anchor>

@@ -1,20 +1,18 @@
-
 import styled from 'styled-components';
 
 export const Container = styled.div`
 background-color: #fff;
 border-radius: 10px;
-margin-left: -11px;
 box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 position: fixed;
-display: flex;
-justify-content: center;
-align-items: center;
-height: 100%;
 overflow: hidden;
+display:flex;
+justify-content: center;
+align-content: center;
+height:100%;
 width: 100%;
+margin-left: -50%;
 max-width: 100%;
-
 `;
 
 export const SignUpContainer = styled.div`
@@ -59,12 +57,6 @@ text-align: center;
 
 export const Title = styled.h1`
 font-weight: bold;
-color: white;
-margin: 0;
-`;
-
-export const Title1 = styled.h1`
-font-weight: bold;
 margin: 0;
 `;
 
@@ -79,8 +71,8 @@ width: 100%;
 
 export const Button = styled.button`
    border-radius: 20px;
-   border: 1px solid #01303F;
-   background-color: #01303F;
+   border: 1px solid #00213D;
+   background-color: #00213D;
    color: #ffffff;
    font-size: 12px;
    font-weight: bold;
@@ -121,8 +113,9 @@ ${props =>
 
 export const Overlay = styled.div`
 background: #02577A;
-background: -webkit-linear-gradient(to right, #0277A9, #02577A, #01303F);
-background: linear-gradient(to right, #0277A9, #02577A, #01303F);
+background: -webkit-linear-gradient(to right, #0277A9, #004F6E, #00213D);
+background: linear-gradient(to right, #0277A9, #004F6E, #00213D);
+
 background-repeat: no-repeat;
 background-size: cover;
 background-position: 0 0;
@@ -163,7 +156,7 @@ export const RightOverlayPanel = styled(OverlayPanel)`
 `;
 
 export const Paragraph = styled.p`
-font-size: 20px;
+font-size: 14px;
   font-weight: 100;
   line-height: 20px;
   letter-spacing: 0.5px;
