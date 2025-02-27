@@ -31,7 +31,7 @@ function Login() {
                  <Components.LeftOverlayPanel signinIn={signIn}>
                      <Components.Title>Welcome Back!</Components.Title>
                      <Components.Paragraph>
-                         To keep connected with us please login with your personal info
+                     Log in with your details and continue shaping a smarter, more connected city.
                      </Components.Paragraph>
                      <Components.GhostButton onClick={() => toggle(true)}>
                          Sign In
@@ -41,7 +41,7 @@ function Login() {
                      <Components.RightOverlayPanel signinIn={signIn}>
                        <Components.Title>Hello, Friend!</Components.Title>
                        <Components.Paragraph>
-                           Enter Your personal details and start journey with us
+                       Enter your details and start your journey with us toward a smarter, more connected city
                        </Components.Paragraph>
                            <Components.GhostButton onClick={() => toggle(false)}>
                                Sigin Up
