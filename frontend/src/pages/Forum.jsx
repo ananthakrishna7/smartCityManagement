@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Button from "C:/Users/Acer/smartCityManagement/frontend/src/compoents/ui/button.jsx";
-import { Card, CardContent } from "C:/Users/Acer/smartCityManagement/frontend/src/compoents/ui/card.jsx";
+import Button from "../compoents/ui/button.jsx";
+import { Card, CardContent } from "../compoents/ui/card.jsx";
 import { ArrowUp, ArrowDown } from "lucide-react";
 import "./Forum.css";
 
