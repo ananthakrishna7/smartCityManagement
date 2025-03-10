@@ -1,9 +1,11 @@
-var express = require('express');
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
+const transportController = require("../controllers/tranportationController");
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.json({ title: 'transportation' });
-});
+router.get("/routes", transportController.getAllRoutes);
+router.get("/routes/:id", transportController.getRouteById);
+router.post("/routes", transportController.addRoute);
+router.put("/routes/:id", transportController.updateRoute);
+router.delete("/routes/:id", transportController.deleteRoute);
 
 module.exports = router;
