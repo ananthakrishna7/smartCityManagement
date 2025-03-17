@@ -1,9 +1,9 @@
 // Import required modules
-const app = require('./app');
-const bodyParser = require('body-parser');
+// const app = require("./app");
+// const bodyParser = require("body-parser");
 
 // const port = process.env.PORT || 9000;
-const port = 9000;
+//const port = 9000;
 // Middleware to parse JSON
 //app.use(bodyParser.json());
 
@@ -44,6 +44,28 @@ app.get('/', (req, res) => {
 });
 */
 // Start the server
+// app.listen(port, () => {
+//   console.log(`Server running at http://localhost:${port}`);
+// });
+
+const express = require("express");
+const cors = require("cors");
+const connectDB = require("./config/db");
+
+const app = express();
+const port = 9000;
+
+// Enable CORS
+app.use(cors());
+app.use(express.json());
+
+connectDB();
+
+// Import Routes
+const announcementRoutes = require("./routes/announcements");
+app.use("/announcements", announcementRoutes);
+
+// Start Server
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+  console.log(`Backend running at http://localhost:${port}`);
 });
