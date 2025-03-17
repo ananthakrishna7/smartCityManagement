@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./App.css";
 import Login from "./pages/login";
 import Home from "./pages/Home";
@@ -8,6 +9,9 @@ import Forum from "./pages/Forum";
 import CityServices from "./pages/CityServices";
 import ResourceManagement from "./pages/ResourceManagement";
 import Announcements from "./pages/Announcement";
+import AdminAnnouncement from "./pages/AdminAnnouncement"; // Import Admin Page
+
+
 
 function Navbar() {
   const location = useLocation();
@@ -65,6 +69,7 @@ function App() {
             <Route path="/city-services" element={<CityServices />} />
             <Route path="/resource-management" element={<ResourceManagement />} />
             <Route path="/announcements" element={<Announcements />} />
+            <Route path="/adminannouncement" element={<AdminAnnouncement />} />
           </Routes>
         </div>
       </div>
