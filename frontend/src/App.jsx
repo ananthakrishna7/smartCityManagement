@@ -10,6 +10,8 @@ import CityServices from "./pages/CityServices";
 import ResourceManagement from "./pages/ResourceManagement";
 import Announcements from "./pages/Announcement";
 import AdminAnnouncement from "./pages/AdminAnnouncement"; // Import Admin Page
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 
 
