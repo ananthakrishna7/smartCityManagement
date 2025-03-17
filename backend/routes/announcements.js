@@ -1,53 +1,52 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-//import AnnouncementModel from '../models/Announcement';
-var AnnouncementModel = require("../models/Announcement.js").default
+var AnnouncementModel = require("../models/Announcement.js");
 
-/* USE THIS FOR GETTING AND MAKING ANNOUNCEMENTS */
-
-// GET ALL ANNOUNCEMENTS
-router.get('/', async (req, res) => {
+// ✅ GET ALL ANNOUNCEMENTS
+router.get("/", async (req, res) => {
   try {
     const announcements = await AnnouncementModel.find({});
-    res.send(announcements);
-  } catch (err) {
-    res.status(500).send({ err });
-  }
-})
-
-// MAKE NEW ANNOUNCEMENT
-router.post('/new', async (req, res) => {
-  const announcement = new AnnouncementModel(req.body);
-
-  try {
-    await announcement.save();
-    res.send(announcement)
-  } catch (err) {
-    res.status(500).send(err);
-  }
-})
-
-/* Announcemnts are fetched by the '/' GET method. The admin can 
-choose which announcement to delete. The '/delete' route must send this 
-announcement id along, possibly in the url, or in json format */
-router.delete('/delete', async (req, res) => {
-  try {
-    const announcement = await AnnouncementModel.findByIdAndDelete(req.body.id);
-    if (!announcement) {
-      res.status(404).send('No item found');
+    if (!announcements || announcements.length === 0) {
+      return res.status(404).json({ error: "No announcements found" });
     }
+    res.status(200).json(announcements);
   } catch (err) {
-    res.status(500).send("Error deleting announcement");
+    console.error("Error fetching announcements:", err);
+    res.status(500).json({ error: err.message || "Internal Server Error" });
   }
-}
-  )
+});
 
-// /* GET traffic incidents */
-// router.get('/traffic', (req, res) => {
-//   res.json({
-//     title: 'traffic data',
-//     data: "dummy"
-//   })
-// })
+// ✅ MAKE A NEW ANNOUNCEMENT
+router.post("/", async (req, res) => {
+  try {
+    const { title, description, type } = req.body;
+
+    if (!title || !description || !type) {
+      return res
+        .status(400)
+        .json({ error: "Title, description, and type are required" });
+    }
+
+    const announcement = new AnnouncementModel(req.body);
+    await announcement.save();
+
+    res.status(201).json({
+      message: "Announcement created successfully",
+      announcement,
+    });
+  } catch (err) {
+    console.error("Error creating announcement:", err);
+    res.status(500).json({ error: err.message || "Internal Server Error" });
+  }
+});
+
+// ✅ GET TRAFFIC INCIDENTS
+router.get("/traffic", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Traffic data retrieved successfully",
+    data: "dummy",
+  });
+});
 
 module.exports = router;
