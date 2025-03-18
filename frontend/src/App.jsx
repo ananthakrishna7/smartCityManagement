@@ -19,6 +19,7 @@ import Announcements from "./pages/Announcement";
 import AdminAnnouncement from "./pages/AdminAnnouncement"; // Import Admin Page
 import AdminHome from "./pages/AdminHome";
 import AdminTransportation from "./pages/AdminTransportation";
+import AdminGrievanceDashboard from "./pages/AdminGrievanceDashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function Navbar() {
@@ -93,6 +94,7 @@ function App() {
             path="/admintransportation"
             element={<AdminTransportation />}
           />
+          <Route path="/admingrievance" element={<AdminGrievanceDashboard />} />
           {/* Redirect to login by default */}
           <Route path="/" element={<Navigate to="/login" />} />
         </Routes>

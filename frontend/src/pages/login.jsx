@@ -31,6 +31,8 @@ function Login() {
       if (response.status === 200) {
         localStorage.setItem("role", data.user.role); // Save role
         localStorage.setItem("user", JSON.stringify(data.user)); // Save user data
+        // Inside login handler after successful login
+        localStorage.setItem("userId", data.user._id); // Assuming the response contains the user details
 
         setSuccessMessage("Login successful! Redirecting...");
         setTimeout(() => {

@@ -64,8 +64,10 @@ connectDB();
 
 // Import Routes
 const announcementRoutes = require("./routes/announcements");
+const grievanceRoutes = require("./routes/grievances");
 app.use("/announcements", announcementRoutes);
 app.use("/auth", authRoutes);
+app.use("/grievances", grievanceRoutes);
 
 // Start Server
 app.listen(port, () => {

@@ -31,7 +31,7 @@ const AdminHome = () => {
         </button>
         <button
           className="admin-btn"
-          onClick={() => navigate("/admincity-services")}
+          onClick={() => navigate("/admingrievance")}
         >
           🏙️ Manage City Services
         </button>
