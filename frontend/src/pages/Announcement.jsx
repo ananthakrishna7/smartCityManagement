@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Announcement.css";
+import Navbar from "../compoents/ui/Navbar";
 
 const Announcement = () => {
   const [announcements, setAnnouncements] = useState([]);
@@ -22,6 +23,7 @@ const Announcement = () => {
 
   return (
     <div className="announcement-container">
+      <Navbar />
       <h1 className="announcement-title">🔔 City Announcements</h1>
       <p className="announcement-subtitle">
         Stay informed about important updates and announcements from your city

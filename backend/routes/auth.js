@@ -1,20 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
+const { login, register } = require("../controllers/authController");
 
-/* GET home page. */
-router.get('/', function (req, res, next) {
-  res.send('auth');
-});
+router.post("/login", login);
+router.post("/register", register);
 
-router.post('/register', (req, res) => {
-  res.json({ title: "Register user" })
-})
-
-router.post('/login', (req, res) => {
-  res.json({ title: "Login user" })
-})
-
-router.get('/current', (req, res) => {
-  res.json({ title: "Current user" })
-})
 module.exports = router;

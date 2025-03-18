@@ -1,9 +1,21 @@
 import React from "react";
-import { 
-  LineChart, Line, BarChart, Bar, PieChart, Pie, Cell,
-  XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
+import {
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  PieChart,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
 } from "recharts";
 import "./resource.css";
+import Navbar from "../compoents/ui/Navbar";
 
 // Sample data for different resources
 const electricityData = [
@@ -62,6 +74,7 @@ const COLORS = ["#4285F4", "#34A853"];
 const ResourceManagement = () => {
   return (
     <div className="resource-container">
+      <Navbar></Navbar>
       <h2 className="dashboard-title">Smart City Resource Dashboard</h2>
 
       <div className="dashboard-grid">
@@ -75,8 +88,18 @@ const ResourceManagement = () => {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Line type="monotone" dataKey="usage" stroke="#8884d8" strokeWidth={2} />
-              <Line type="monotone" dataKey="cost" stroke="#82ca9d" strokeWidth={2} />
+              <Line
+                type="monotone"
+                dataKey="usage"
+                stroke="#8884d8"
+                strokeWidth={2}
+              />
+              <Line
+                type="monotone"
+                dataKey="cost"
+                stroke="#82ca9d"
+                strokeWidth={2}
+              />
             </LineChart>
           </ResponsiveContainer>
         </div>
@@ -139,8 +162,18 @@ const ResourceManagement = () => {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Line type="monotone" dataKey="users" stroke="#8884d8" strokeWidth={2} />
-              <Line type="monotone" dataKey="efficiency" stroke="#82ca9d" strokeWidth={2} />
+              <Line
+                type="monotone"
+                dataKey="users"
+                stroke="#8884d8"
+                strokeWidth={2}
+              />
+              <Line
+                type="monotone"
+                dataKey="efficiency"
+                stroke="#82ca9d"
+                strokeWidth={2}
+              />
             </LineChart>
           </ResponsiveContainer>
         </div>

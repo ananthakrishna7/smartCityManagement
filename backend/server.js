@@ -51,6 +51,7 @@ app.get('/', (req, res) => {
 const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
+const authRoutes = require("./routes/auth");
 
 const app = express();
 const port = 9000;
@@ -64,6 +65,7 @@ connectDB();
 // Import Routes
 const announcementRoutes = require("./routes/announcements");
 app.use("/announcements", announcementRoutes);
+app.use("/auth", authRoutes);
 
 // Start Server
 app.listen(port, () => {
