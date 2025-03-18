@@ -17,6 +17,8 @@ import CityServices from "./pages/CityServices";
 import ResourceManagement from "./pages/ResourceManagement";
 import Announcements from "./pages/Announcement";
 import AdminAnnouncement from "./pages/AdminAnnouncement"; // Import Admin Page
+import AdminHome from "./pages/AdminHome";
+import AdminTransportation from "./pages/AdminTransportation";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function Navbar() {
@@ -67,7 +69,7 @@ function App() {
 
   // Check if the current route is the login page or admin page
   const isLoginPage = location.pathname === "/login";
-  const isAdminPage = location.pathname === "/adminannouncement";
+  const isAdminPage = location.pathname === "/admin";
 
   // Check if the user is logged in (based on localStorage)
   const isLoggedIn = localStorage.getItem("token") !== null;
@@ -86,6 +88,11 @@ function App() {
           <Route path="/resource-management" element={<ResourceManagement />} />
           <Route path="/announcements" element={<Announcements />} />
           <Route path="/adminannouncement" element={<AdminAnnouncement />} />
+          <Route path="/admin" element={<AdminHome />} />
+          <Route
+            path="/admintransportation"
+            element={<AdminTransportation />}
+          />
           {/* Redirect to login by default */}
           <Route path="/" element={<Navigate to="/login" />} />
         </Routes>

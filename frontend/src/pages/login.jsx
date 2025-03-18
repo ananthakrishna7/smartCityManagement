@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import * as Components from "./components";
 import { useNavigate } from "react-router-dom";
-import { AuthProvider } from "../context/AuthContext";
 
 function Login() {
   const [signIn, toggle] = useState(true);
@@ -37,7 +36,7 @@ function Login() {
         setTimeout(() => {
           // Redirect based on user role
           if (data.user.role === "admin") {
-            navigate("/adminannouncement"); // Redirect to admin page
+            navigate("/admin"); // Redirect to admin page
           } else {
             navigate("/home"); // Redirect to home page
           }

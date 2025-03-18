@@ -1,0 +1,84 @@
+/* 🏛️ Admin Dashboard Container */
+.admin-home-container {
+  max-width: 800px;
+  margin: 50px auto;
+  text-align: center;
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 🏛️ Title & Subtitle */
+.admin-home-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.admin-home-subtitle {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+/* 🎛️ Admin Buttons Container */
+.admin-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* 📌 Admin Buttons */
+.admin-btn {
+  width: 100%;
+  max-width: 350px;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 🎨 Different Button Colors */
+.admin-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.admin-btn:nth-child(1) {
+  background-color: #ffcccc;
+  color: #d60000;
+}
+
+.admin-btn:nth-child(2) {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
+.admin-btn:nth-child(3) {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.admin-btn:nth-child(4) {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+/* 🔒 Logout Button */
+.logout-btn {
+  background-color: #ff4d4d;
+  color: white;
+  margin-top: 20px;
+}
+
+.logout-btn:hover {
+  background-color: #d60000;
+  transform: scale(1.05);
+}
