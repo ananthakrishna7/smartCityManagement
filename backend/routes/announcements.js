@@ -6,47 +6,60 @@ var AnnouncementModel = require("../models/Announcement.js");
 router.get("/", async (req, res) => {
   try {
     const announcements = await AnnouncementModel.find({});
-    if (!announcements || announcements.length === 0) {
-      return res.status(404).json({ error: "No announcements found" });
-    }
     res.status(200).json(announcements);
   } catch (err) {
     console.error("Error fetching announcements:", err);
-    res.status(500).json({ error: err.message || "Internal Server Error" });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
-// ✅ MAKE A NEW ANNOUNCEMENT
-router.post("/", async (req, res) => {
+// ✅ ADD A NEW ANNOUNCEMENT
+router.post("/add", async (req, res) => {
   try {
-    const { title, description, type } = req.body;
+    const { title, description, date, type } = req.body;
 
-    if (!title || !description || !type) {
-      return res
-        .status(400)
-        .json({ error: "Title, description, and type are required" });
+    // Validate required fields
+    if (!title || !description || !date || !type) {
+      return res.status(400).json({ error: "All fields are required" });
     }
 
-    const announcement = new AnnouncementModel(req.body);
-    await announcement.save();
+    // Create and save new announcement
+    const newAnnouncement = new AnnouncementModel({
+      title,
+      description,
+      date,
+      type,
+    });
+    await newAnnouncement.save();
 
     res.status(201).json({
       message: "Announcement created successfully",
-      announcement,
+      newAnnouncement,
     });
   } catch (err) {
     console.error("Error creating announcement:", err);
-    res.status(500).json({ error: err.message || "Internal Server Error" });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
-// ✅ GET TRAFFIC INCIDENTS
-router.get("/traffic", (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: "Traffic data retrieved successfully",
-    data: "dummy",
-  });
+// ✅ DELETE ANNOUNCEMENT BY ID
+router.delete("/delete/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Check if announcement exists
+    const announcement = await AnnouncementModel.findById(id);
+    if (!announcement) {
+      return res.status(404).json({ error: "Announcement not found" });
+    }
+
+    // Delete announcement
+    await AnnouncementModel.findByIdAndDelete(id);
+    res.status(200).json({ message: "Announcement deleted successfully" });
+  } catch (err) {
+    console.error("Error deleting announcement:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 module.exports = router;

@@ -1,33 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Button, Form } from "react-bootstrap"; // Bootstrap Modal
 import "./Announcement.css";
 
 const AdminAnnouncement = () => {
-  const [announcements, setAnnouncements] = useState([
-    {
-      title: "Water Supply Maintenance",
-      description:
-        "Scheduled maintenance on 25th Feb from 10 AM to 4 PM. Please store water accordingly.",
-      date: "Feb 25, 2024",
-      type: "alert1",
-    },
-    {
-      title: "Traffic Diversion",
-      description:
-        "Temporary diversion due to metro construction near main junction. Expected duration: 2 weeks.",
-      date: "Feb 23, 2024",
-      type: "info",
-    },
-    {
-      title: "Public Meeting",
-      description:
-        "Join us for a public meeting to discuss and provide feedback on community facilities improvements.",
-      date: "Mar 1, 2024",
-      type: "success",
-    },
-  ]);
-
-  // 🌟 State for Modal Form
+  const [announcements, setAnnouncements] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [newAnnouncement, setNewAnnouncement] = useState({
     title: "",
@@ -35,6 +11,14 @@ const AdminAnnouncement = () => {
     date: "",
     type: "info",
   });
+
+  // ✅ Fetch Announcements from Backend
+  useEffect(() => {
+    fetch("http://localhost:9000/announcements")
+      .then((res) => res.json())
+      .then((data) => setAnnouncements(data))
+      .catch((error) => console.error("Error fetching announcements:", error));
+  }, []);
 
   // 🎨 Modal Control
   const handleShow = () => setShowModal(true);
@@ -45,40 +29,72 @@ const AdminAnnouncement = () => {
     setNewAnnouncement({ ...newAnnouncement, [e.target.name]: e.target.value });
   };
 
-  // 🚀 Add Announcement
+  // ✅ Add Announcement
   const addAnnouncement = () => {
-    if (!newAnnouncement.title || !newAnnouncement.description || !newAnnouncement.date) {
+    if (
+      !newAnnouncement.title ||
+      !newAnnouncement.description ||
+      !newAnnouncement.date
+    ) {
       alert("Please fill in all fields!");
       return;
     }
 
-    // 🌟 Ensure correct type (alert, info, success)
-    let type = newAnnouncement.type?.toLowerCase();
-    if (!["alert1", "info", "success"].includes(type)) {
-      console.warn("Invalid type received, defaulting to 'info'");
-      type = "info"; // Default to 'info' if type is incorrect
-    }
+    fetch("http://localhost:9000/announcements/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newAnnouncement),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        alert("Announcement added successfully!");
+        setAnnouncements([...announcements, data.newAnnouncement]); // Update UI
+        setShowModal(false);
+        setNewAnnouncement({
+          title: "",
+          description: "",
+          date: "",
+          type: "info",
+        });
+      })
+      .catch((error) => console.error("Error adding announcement:", error));
+  };
 
-    console.log("✅ New Announcement:", { ...newAnnouncement, type }); // Debugging log
-
-    // ✅ Add new announcement & close modal
-    setAnnouncements([...announcements, { ...newAnnouncement, type }]);
-    setShowModal(false);
-    setNewAnnouncement({ title: "", description: "", date: "", type: "info" }); // Reset form
+  // ❌ Delete Announcement
+  const deleteAnnouncement = (id) => {
+    fetch(`http://localhost:9000/announcements/delete/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then(() => {
+        alert("Announcement deleted successfully!");
+        setAnnouncements(announcements.filter((item) => item._id !== id));
+      })
+      .catch((error) => console.error("Error deleting announcement:", error));
   };
 
   return (
     <div className="announcement-container">
       <h1 className="announcement-title">🔔 Admin Announcements</h1>
-      <p className="announcement-subtitle">Manage announcements and keep your city informed.</p>
+      <p className="announcement-subtitle">
+        Manage announcements and keep your city informed.
+      </p>
 
       {/* Announcement Grid */}
       <div className="announcement-grid">
-        {announcements.map((item, index) => (
-          <div key={index} className={`announcement-card ${item.type}`}>
+        {announcements.map((item) => (
+          <div key={item._id} className={`announcement-card ${item.type}`}>
             <h3 className="announcement-card-title">{item.title}</h3>
             <p className="announcement-card-description">{item.description}</p>
             <p className="announcement-card-date">📅 {item.date}</p>
+            <button
+              className="delete-button"
+              onClick={() => deleteAnnouncement(item._id)}
+            >
+              ❌ Delete
+            </button>
           </div>
         ))}
       </div>
@@ -88,60 +104,57 @@ const AdminAnnouncement = () => {
         ➕
       </button>
 
-      {/* 🎨 Fancy Modal Popup */}
+      {/* 🎨 Modal Popup */}
       <Modal show={showModal} onHide={handleClose} centered>
         <Modal.Header closeButton className="modal-header-custom">
           <Modal.Title>📢 Add Announcement</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
-            {/* Title */}
             <Form.Group className="mb-3">
               <Form.Label>Title</Form.Label>
               <Form.Control
                 type="text"
                 name="title"
-                placeholder="Enter announcement title"
                 value={newAnnouncement.title}
                 onChange={handleChange}
                 required
               />
             </Form.Group>
 
-            {/* Description */}
             <Form.Group className="mb-3">
               <Form.Label>Description</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
                 name="description"
-                placeholder="Enter description"
                 value={newAnnouncement.description}
                 onChange={handleChange}
                 required
               />
             </Form.Group>
 
-            {/* Date */}
             <Form.Group className="mb-3">
               <Form.Label>Date</Form.Label>
               <Form.Control
                 type="text"
                 name="date"
-                placeholder="E.g., Mar 10, 2024"
                 value={newAnnouncement.date}
                 onChange={handleChange}
                 required
               />
             </Form.Group>
 
-            {/* Type (Color) */}
             <Form.Group className="mb-3">
-              <Form.Label>Announcement Type</Form.Label>
-              <Form.Select name="type" value={newAnnouncement.type} onChange={handleChange}>
-                <option value="alert1">🚨 Alert (Red)</option>
-                <option value="info">ℹ️ Info (Blue)</option>
-                <option value="success">✅ Success (Green)</option>
+              <Form.Label>Type</Form.Label>
+              <Form.Select
+                name="type"
+                value={newAnnouncement.type}
+                onChange={handleChange}
+              >
+                <option value="alert">🚨 Alert</option>
+                <option value="info">ℹ️ Info</option>
+                <option value="success">✅ Success</option>
               </Form.Select>
             </Form.Group>
           </Form>
@@ -152,7 +165,7 @@ const AdminAnnouncement = () => {
             ❌ Cancel
           </Button>
           <Button variant="primary" onClick={addAnnouncement}>
-            ✅ Add Announcement
+            ✅ Add
           </Button>
         </Modal.Footer>
       </Modal>
