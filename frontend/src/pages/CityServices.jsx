@@ -1,7 +1,13 @@
 import React from "react";
+import Navbar from "../compoents/ui/Navbar";
 
 function CityServices() {
-  return <h1>City Services</h1>;
+  return (
+    <div>
+      <Navbar />
+      <h1>City Services</h1>;
+    </div>
+  );
 }
 
 export default CityServices;
