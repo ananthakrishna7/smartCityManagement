@@ -35,6 +35,35 @@ describe("POST /auth/login", () => {
         expect(response.body.message).toBe("Login successful")
         await UserModel.deleteOne({ email: user.email }).exec()
     })
+
+    it("should return an error if user does not exist", async() => {
+        const user = {name: "Test User",
+            email: "tester2@ex.com",
+            password: "password",
+            role: "user"}
+            const response = await request(app)
+            .post("/auth/login")
+            .send(user)
+        expect(response.statusCode).toBe(400)
+        expect(response.body.message).toBe("User not found")
+    })
+
+    it("should return an error if password is incorrect", async() => {
+        const user = {name: "Test User",
+            email: "tester2@ex.com",
+            password: "password",
+            role: "user"}
+        UserModel.create(user);
+
+        const errUser = {email: "tester2@ex.com",
+            password: "wrongpassword"}
+        const response = await request(app)
+            .post("/auth/login")
+            .send(errUser)  
+        expect(response.statusCode).toBe(400)
+        expect(response.body.message).toBe("Invalid password")
+        await UserModel.deleteOne({ email: user.email }).exec()
+    })
 })
 
 describe("POST /auth/register", () => {
@@ -54,5 +83,23 @@ describe("POST /auth/register", () => {
         // Clean up
         await UserModel.deleteOne({ email: newUser.email }).exec()
     })
-})
 
+    it("should return an error if email already exists", async() => {
+        const newUser = {
+            name: "Test User",
+            email: "te1@ex.com",
+            password: "password",
+            role: "user"
+        }
+        await request(app)
+            .post("/auth/register")
+            .send(newUser)
+        const response = await request(app)
+            .post("/auth/register")
+            .send(newUser)
+        expect(response.statusCode).toBe(400)
+        expect(response.body.message).toBe("User with this email already exists")
+        await UserModel.deleteOne({ email: newUser.email }).exec()
+
+})
+})
