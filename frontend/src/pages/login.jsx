@@ -38,11 +38,11 @@ function Login() {
         setTimeout(() => {
           // Redirect based on user role
           if (data.user.role === "admin") {
-            navigate("/admin"); // Redirect to admin page
+            window.location.href = "/admin"; // Redirect to admin page
           } else {
-            navigate("/home"); // Redirect to home page
+            window.location.href = "/home"; // Redirect to home page
           }
-        }, 2000);
+        }, 200);
       } else if (response.status === 400) {
         // Handle unregistered user
         alert("User is not registered. Please sign up.");
