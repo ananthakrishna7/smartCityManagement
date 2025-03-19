@@ -8,7 +8,6 @@ const AdminAnnouncement = () => {
   const [newAnnouncement, setNewAnnouncement] = useState({
     title: "",
     description: "",
-    date: "",
     type: "info",
   });
 
@@ -31,11 +30,7 @@ const AdminAnnouncement = () => {
 
   // ✅ Add Announcement
   const addAnnouncement = () => {
-    if (
-      !newAnnouncement.title ||
-      !newAnnouncement.description ||
-      !newAnnouncement.date
-    ) {
+    if (!newAnnouncement.title || !newAnnouncement.description) {
       alert("Please fill in all fields!");
       return;
     }
@@ -55,7 +50,6 @@ const AdminAnnouncement = () => {
         setNewAnnouncement({
           title: "",
           description: "",
-          date: "",
           type: "info",
         });
       })
@@ -129,17 +123,6 @@ const AdminAnnouncement = () => {
                 rows={3}
                 name="description"
                 value={newAnnouncement.description}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-              <Form.Label>Date</Form.Label>
-              <Form.Control
-                type="text"
-                name="date"
-                value={newAnnouncement.date}
                 onChange={handleChange}
                 required
               />

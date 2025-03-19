@@ -16,10 +16,10 @@ router.get("/", async (req, res) => {
 // ✅ ADD A NEW ANNOUNCEMENT
 router.post("/add", async (req, res) => {
   try {
-    const { title, description, date, type } = req.body;
+    const { title, description, type } = req.body;
 
     // Validate required fields
-    if (!title || !description || !date || !type) {
+    if (!title || !description || !type) {
       return res.status(400).json({ error: "All fields are required" });
     }
 
@@ -27,7 +27,6 @@ router.post("/add", async (req, res) => {
     const newAnnouncement = new AnnouncementModel({
       title,
       description,
-      date,
       type,
     });
     await newAnnouncement.save();
