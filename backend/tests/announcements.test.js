@@ -36,7 +36,7 @@ describe("POST /announcements/add", () => {
         const newAnnouncement = {
             title: "Test Announcement",
             description: "This is a test announcement",
-            type: "Important"
+            type: "info"
         }
         const response = await request(app)
             .post("/announcements/add")
@@ -63,5 +63,26 @@ describe("POST /announcements/add", () => {
         
         expect(response.statusCode).toBe(400)
         expect(response.body.error).toBe("All fields are required")
+    })
+})
+
+describe("DELETE /announcements/delete/:id", () => {
+    it("should delete an announcement by ID", async() => {
+        const newAnnouncement = new AnnouncementModel({
+            title: "Test Announcement",
+            description: "This is a test announcement",
+            type: "info"
+        })
+        await newAnnouncement.save()
+        
+        const response = await request(app).delete(`/announcements/delete/${newAnnouncement._id}`)
+        expect(response.statusCode).toBe(200)
+        expect(response.body.message).toBe("Announcement deleted successfully")
+    })
+    
+    it("should return an error if announcement does not exist", async() => {
+        const response = await request(app).delete("/announcements/delete/67daae42260be8f7cbb71237")
+        expect(response.statusCode).toBe(404)
+        expect(response.body.error).toBe("Announcement not found")
     })
 })
