@@ -1,12 +1,18 @@
 var express = require("express");
 var router = express.Router();
 var AnnouncementModel = require("../models/Announcement.js");
-
+var moment = require("moment");
 // ✅ GET ALL ANNOUNCEMENTS
 router.get("/", async (req, res) => {
   try {
-    const announcements = await AnnouncementModel.find({});
-    res.status(200).json(announcements);
+    const announcements = await AnnouncementModel.find({}).lean();
+    const normalizedAnnouncements = announcements.map((announcement) => {
+      return {
+        ...announcement,
+        date: moment(announcement.date).format("YYYY-MM-DD"),
+      };
+    });
+    res.status(200).json(normalizedAnnouncements);
   } catch (err) {
     console.error("Error fetching announcements:", err);
     res.status(500).json({ error: "Internal Server Error" });

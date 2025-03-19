@@ -56,7 +56,7 @@ db();
 app.use('/', require('./routes/index'));
 app.use('/auth', require('./routes/auth'));
 app.use('/users', require('./routes/users'));
-app.use('/cityservices', require('./routes/cityservices'));
+app.use('/cityservices', require('./routes/grievances'));
 app.use('/announcements', require('./routes/announcements'));
 app.use('/forum', require('./routes/forum'));
 app.use('/resourceManagement', require('./routes/resourceManagement'));
