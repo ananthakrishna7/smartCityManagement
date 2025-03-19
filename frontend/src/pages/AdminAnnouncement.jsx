@@ -8,7 +8,6 @@ const AdminAnnouncement = () => {
   const [newAnnouncement, setNewAnnouncement] = useState({
     title: "",
     description: "",
-    date: "",
     type: "info",
   });
 
@@ -29,50 +28,58 @@ const AdminAnnouncement = () => {
     setNewAnnouncement({ ...newAnnouncement, [e.target.name]: e.target.value });
   };
 
-  // ✅ Add Announcement
+  // ✅ Add Announcement with Confirmation
   const addAnnouncement = () => {
-    if (
-      !newAnnouncement.title ||
-      !newAnnouncement.description ||
-      !newAnnouncement.date
-    ) {
+    if (!newAnnouncement.title || !newAnnouncement.description) {
       alert("Please fill in all fields!");
       return;
     }
 
-    fetch("http://localhost:9000/announcements/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newAnnouncement),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        alert("Announcement added successfully!");
-        setAnnouncements([...announcements, data.newAnnouncement]); // Update UI
-        setShowModal(false);
-        setNewAnnouncement({
-          title: "",
-          description: "",
-          date: "",
-          type: "info",
-        });
+    // Confirm before adding the announcement
+    const isConfirmed = window.confirm(
+      "Are you sure you want to add this announcement?"
+    );
+
+    if (isConfirmed) {
+      fetch("http://localhost:9000/announcements/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newAnnouncement),
       })
-      .catch((error) => console.error("Error adding announcement:", error));
+        .then((res) => res.json())
+        .then((data) => {
+          alert("Announcement added successfully!");
+          setAnnouncements([...announcements, data.newAnnouncement]); // Update UI
+          setShowModal(false);
+          setNewAnnouncement({
+            title: "",
+            description: "",
+            type: "info",
+          });
+        })
+        .catch((error) => console.error("Error adding announcement:", error));
+    }
   };
 
-  // ❌ Delete Announcement
+  // ❌ Delete Announcement with Confirmation
   const deleteAnnouncement = (id) => {
-    fetch(`http://localhost:9000/announcements/delete/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then(() => {
-        alert("Announcement deleted successfully!");
-        setAnnouncements(announcements.filter((item) => item._id !== id));
+    const isConfirmed = window.confirm(
+      "Are you sure you want to delete this announcement?"
+    );
+
+    if (isConfirmed) {
+      fetch(`http://localhost:9000/announcements/delete/${id}`, {
+        method: "DELETE",
       })
-      .catch((error) => console.error("Error deleting announcement:", error));
+        .then((res) => res.json())
+        .then(() => {
+          alert("Announcement deleted successfully!");
+          setAnnouncements(announcements.filter((item) => item._id !== id));
+        })
+        .catch((error) => console.error("Error deleting announcement:", error));
+    }
   };
 
   return (
@@ -129,17 +136,6 @@ const AdminAnnouncement = () => {
                 rows={3}
                 name="description"
                 value={newAnnouncement.description}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-              <Form.Label>Date</Form.Label>
-              <Form.Control
-                type="text"
-                name="date"
-                value={newAnnouncement.date}
                 onChange={handleChange}
                 required
               />

@@ -35,8 +35,10 @@ body {
 .announcement-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  row-gap: 40px; /* More space between rows */
-  column-gap: 40px; /* More space between columns */
+  row-gap: 40px;
+  /* More space between rows */
+  column-gap: 40px;
+  /* More space between columns */
   justify-content: center;
 }
 
@@ -80,8 +82,8 @@ body {
 }
 
 /* Colors based on type */
-.alert1{
-  background-color: #ffe5e5;
+.alert {
+  background-color: #e5f1ff;
   border-left: 5px solid #ff4d4d;
 }
 
@@ -99,7 +101,8 @@ body {
 @media (max-width: 768px) {
   .announcement-grid {
     grid-template-columns: 1fr;
-    row-gap: 25px; /* Slightly reduced spacing for mobile */
+    row-gap: 25px;
+    /* Slightly reduced spacing for mobile */
   }
 }
 
@@ -136,4 +139,3 @@ body {
   background-color: #004F6E;
   transform: scale(1.1);
 }
-

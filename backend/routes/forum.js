@@ -17,7 +17,7 @@ router.post('/create', function (req, res, next) {
 });
 
 // Route for deleting a post
-router.post('/delete', function (req, res, next) {
+router.delete('/delete', function (req, res, next) {
   const { id } = req.body;
   if (!id) {
     return res.status(400).json({ message: 'Post ID is required' });
@@ -35,4 +35,5 @@ router.post('/edit', function (req, res, next) {
   // Logic to edit a post by ID
   res.status(200).json({ message: `Post with ID ${id} updated successfully`, updatedPost: { title, content } });
 });
+
 module.exports = router;
