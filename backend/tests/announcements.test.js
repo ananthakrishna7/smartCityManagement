@@ -30,3 +30,38 @@ describe("GET /announcements", () => {
         expect(response.body).toEqual(normalizedAnnouncements)
     })
 })
+
+describe("POST /announcements/add", () => {
+    it("should add a new announcement", async() => {
+        const newAnnouncement = {
+            title: "Test Announcement",
+            description: "This is a test announcement",
+            type: "Important"
+        }
+        const response = await request(app)
+            .post("/announcements/add")
+            .send(newAnnouncement)
+        
+        expect(response.statusCode).toBe(201)
+        expect(response.body.message).toBe("Announcement created successfully")
+        expect(response.body.newAnnouncement.title).toBe(newAnnouncement.title)
+        expect(response.body.newAnnouncement.description).toBe(newAnnouncement.description)
+        expect(response.body.newAnnouncement.type).toBe(newAnnouncement.type)
+        
+        // Clean up 
+        await AnnouncementModel.deleteOne({ _id: response.body.newAnnouncement._id }).exec()
+    })
+    
+    it("should return an error if required fields are missing", async() => {
+        const newAnnouncement = {
+            title: "Test Announcement",
+            description: "This is a test announcement"
+        }
+        const response = await request(app)
+            .post("/announcements/add")
+            .send(newAnnouncement)
+        
+        expect(response.statusCode).toBe(400)
+        expect(response.body.error).toBe("All fields are required")
+    })
+})
