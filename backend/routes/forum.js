@@ -5,6 +5,7 @@ router.get('/', forumController.getHomePage);
 router.post('/create', forumController.createPost);
 router.delete('/delete', forumController.deletePost);
 router.post('/edit', forumController.editPost);
+
 module.exports = router;
 // /* GET home page. */
 // router.get('/', function (req, res, next) {
