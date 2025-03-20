@@ -10,11 +10,6 @@ const forumPostSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    type: {
-        type: String,
-        required: true,
-        enum: ['discussion', 'question', 'announcement'], // Example types
-    },
     upvotes: {
         type: Number,
         default: 0,
