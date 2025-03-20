@@ -1,7 +1,7 @@
 const express = require("express");
 const Grievance = require("../models/Grievance");
 const router = express.Router();
-
+const moment = require("moment")
 // ✅ Submit Grievance (for citizens)
 router.post("/submit", async (req, res) => {
   try {
@@ -34,8 +34,17 @@ router.get("/", async (req, res) => {
     const grievances = await Grievance.find().sort({
       severity: -1,
       createdAt: -1,
-    });
-    res.status(200).json(grievances);
+    }).lean();
+
+    const normalizedGrievances = grievances.map((grievance)=>{
+      return {
+        ...grievance,
+        userId: grievance.userId.toString(),
+                _id: grievance._id.toString(),
+        createdAt: moment(grievance.createdAt).format("YYYY-MM-DD")
+      }
+    })
+    res.status(200).json(normalizedGrievances);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error" });
