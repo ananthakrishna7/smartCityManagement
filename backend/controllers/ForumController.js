@@ -4,8 +4,19 @@ const Reply = require('../models/Reply');
 // filepath: c:\Users\HP\Documents\GitHub\smartCityManagement\backend\controllers\ForumController.js
 
 // Controller for getting the forum home page
-exports.getHomePage = (req, res) => {
-    res.json({ title: 'forum' });
+exports.getHomePage = (req, res) => { // might work
+    var posts = ForumPost.find({}).lean()
+    posts = posts.map((post)=>{
+        return {
+            ...post,
+            _id: post._id.toSting(),
+            userId: post.userId.toString(),
+            replies: post.replies.map((reply)=>{
+                reply = reply.toString()
+            })
+        }
+    })
+    res.status(200).json(posts)
 };
 
 // Controller for creating a new post
