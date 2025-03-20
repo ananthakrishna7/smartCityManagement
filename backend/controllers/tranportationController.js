@@ -26,7 +26,7 @@ exports.addRoute = async (req, res) => {
   try {
     const newRoute = new TransportRoute(req.body);
     await newRoute.save();
-    res.status(201).json(newRoute);
+    res.status(201).json({newRoute});
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
