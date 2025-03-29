@@ -7,6 +7,7 @@ box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 position: fixed;
 overflow: hidden;
 display:flex;
+color: black;
 justify-content: center;
 align-content: center;
 height:100%;
@@ -61,6 +62,7 @@ margin: 0;
 `;
 
 export const Input = styled.input`
+color: black;
 background-color: #eee;
 border: none;
 padding: 12px 15px;
