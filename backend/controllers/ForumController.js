@@ -4,8 +4,19 @@ const Reply = require('../models/Reply');
 // filepath: c:\Users\HP\Documents\GitHub\smartCityManagement\backend\controllers\ForumController.js
 
 // Controller for getting the forum home page
-exports.getHomePage = (req, res) => {
-    res.json({ title: 'forum' });
+exports.getHomePage = async (req, res) => { // might work
+    var posts = await ForumPost.find({}).lean()
+    posts = posts.map((post) => {
+        return {
+            ...post,
+            _id: post._id.toSting(),
+            userId: post.userId.toString(),
+            replies: post.replies.map((reply) => {
+                reply = reply.toString()
+            })
+        }
+    })
+    res.status(200).json(posts)
 };
 
 // Controller for creating a new post
@@ -52,7 +63,7 @@ exports.deletePost = async (req, res) => {
         } catch (error) {
             return res.status(500).json({ message: 'Error deleting reply', error: error.message });
         }
-    } else if (type !== "post"){
+    } else if (type !== "post") {
         return res.status(400).json({ message: 'Invalid type. Must be "post" or "reply"' });
     }
     try {
