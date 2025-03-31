@@ -1,10 +1,16 @@
-/* Requires the Docker Pipeline plugin */
 pipeline {
-    agent any 
+    agent any
     stages {
-        stage('build') {
+        stage('Test') {
             steps {
-                sh 'node --version'
+                sh 'cd backend'
+                sh 'npm run test'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'cd ../frontend'
+                sh 'npm run build'
             }
         }
     }
