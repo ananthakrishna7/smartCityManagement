@@ -1,10 +1,10 @@
 // app.js
 
-const express = require('express');
-const path = require('path');
-const passport = require('passport');
-const dotenv = require('dotenv');
-const jwt = require('jsonwebtoken');
+const express = require("express");
+const path = require("path");
+const passport = require("passport");
+const dotenv = require("dotenv");
+const jwt = require("jsonwebtoken");
 const db = require("./config/db.js");
 
 // Load environment variables
@@ -18,8 +18,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // View Engine Setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "jade");
 /*
 // Passport Middleware
 app.use(passport.initialize());
@@ -53,25 +53,25 @@ async function connectDB() {
 db();
 
 // Routes
-app.use('/', require('./routes/index'));
-app.use('/auth', require('./routes/auth'));
-app.use('/users', require('./routes/users'));
-app.use('/cityservices', require('./routes/grievances'));
-app.use('/announcements', require('./routes/announcements'));
-app.use('/forum', require('./routes/forum'));
-app.use('/resourceManagement', require('./routes/resourceManagement'));
-app.use('/transportation', require('./routes/transportation'));
+app.use("/", require("./routes/index"));
+app.use("/auth", require("./routes/auth"));
+app.use("/users", require("./routes/users"));
+app.use("/grievances", require("./routes/grievances"));
+app.use("/announcements", require("./routes/announcements"));
+app.use("/forum", require("./routes/forum"));
+app.use("/resourceManagement", require("./routes/resourceManagement"));
+app.use("/transportation", require("./routes/transportation"));
 
 // Error Handling
 app.use((req, res, next) => {
-  const err = new Error('Not Found');
+  const err = new Error("Not Found");
   err.status = 404;
   next(err);
 });
 
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
-  res.render('error', { message: err.message, error: err });
+  res.render("error", { message: err.message, error: err });
 });
 
 module.exports = app;

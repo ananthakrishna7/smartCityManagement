@@ -1,91 +1,96 @@
 .transport-container {
-    text-align: center;
-    margin-left: 0;
-    margin-top: 60px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  text-align: center;
+  margin-left: 0;
+  margin-top: 60px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .search-bar {
-    width: 50%;
-    padding: 10px;
-    margin: 20px 0;
-    border: 2px solid #0e2f6d;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #f0f8ff; /* Light blue */
-    color: black; /* Ensures text is visible */
+  width: 50%;
+  padding: 10px;
+  margin: 20px 0;
+  border: 2px solid #0e2f6d;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #f0f8ff; /* Light blue */
+  color: black; /* Ensures text is visible */
 }
 
 .schedule-table {
-    width: 80%; /* Fixed width to prevent resizing */
-    border-collapse: collapse;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    table-layout: fixed; /* Ensures table remains same width */
-
+  width: 80%; /* Fixed width to prevent resizing */
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  table-layout: fixed; /* Ensures table remains same width */
 }
 
-.schedule-table th, .schedule-table td {
-    padding: 12px;
-    border: 1px solid #063052;
-    text-align: center;
-    word-wrap: break-word; /* Ensures text wraps properly */
+.schedule-table th,
+.schedule-table td {
+  padding: 12px;
+  border: 1px solid #063052;
+  text-align: center;
+  word-wrap: break-word; /* Ensures text wraps properly */
 }
 
 .schedule-table th {
-    background-color: #063052;
-    color: white;
+  background-color: #063052;
+  color: white;
 }
 
 .schedule-table td {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .delayed {
-    color: red;
-    font-weight: bold;
+  color: red;
+  font-weight: bold;
 }
 
 .on-time {
-    color: green;
-    font-weight: bold;
+  color: green;
+  font-weight: bold;
 }
 
-.traffic-container{
-    margin-top: 50px;
+.cancelled {
+  color: red;
+  font-weight: bold;
+}
+
+.traffic-container {
+  margin-top: 50px;
 }
 .traffic-container {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 .traffic-container h2 {
-    text-align: center;
-    margin-bottom: 15px;
-    color: #040F0F; /* Rich Black */
+  text-align: center;
+  margin-bottom: 15px;
+  color: #040f0f; /* Rich Black */
 }
 
 /* Traffic Map */
 .traffic-map {
-    width: 100%;
-    height: 500px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 500px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Loading Text */
 .loading-text {
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #7B68EE;
-    padding: 20px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #7b68ee;
+  padding: 20px;
 }
 
-.emptyy{
-    margin-top: 50px;
+.emptyy {
+  margin-top: 50px;
 }

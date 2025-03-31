@@ -21,6 +21,7 @@ import AdminHome from "./pages/AdminHome";
 import AdminTransportation from "./pages/AdminTransportation";
 import AdminGrievanceDashboard from "./pages/AdminGrievanceDashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
+import AdminResource from "./pages/AdminResource";
 
 function Navbar() {
   const location = useLocation();
@@ -95,6 +96,7 @@ function App() {
             element={<AdminTransportation />}
           />
           <Route path="/admingrievance" element={<AdminGrievanceDashboard />} />
+          <Route path="/adminresource-management" element={<AdminResource />} />
           {/* Redirect to login by default */}
           <Route path="/" element={<Navigate to="/login" />} />
         </Routes>

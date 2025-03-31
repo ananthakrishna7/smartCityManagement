@@ -65,6 +65,10 @@ connectDB();
 // Import Routes
 const announcementRoutes = require("./routes/announcements");
 const grievanceRoutes = require("./routes/grievances");
+const transportRoutes = require("./routes/transportation");
+const resourceRoutes = require("./routes/resourceManagement");
+app.use("/resources", resourceRoutes);
+app.use("/transport", transportRoutes);
 app.use("/announcements", announcementRoutes);
 app.use("/auth", authRoutes);
 app.use("/grievances", grievanceRoutes);
