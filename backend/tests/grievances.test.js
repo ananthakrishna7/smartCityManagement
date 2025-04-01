@@ -6,7 +6,6 @@ const moment = require("moment");
 
 require("dotenv").config();
 
-<<<<<<< HEAD
 // Test data
 const testUserId = new mongoose.Types.ObjectId(); // Generate a test user ID
 const testGrievance = {
@@ -145,29 +144,3 @@ describe("Grievance Routes", () => {
     });
   });
 });
-=======
-beforeEach(async () => {
-    await mongoose.connect(process.env.MONGO_URI)
-})
-
-afterEach(async () => {
-    await mongoose.connection.close()
-})
-
-describe("GET /cityservices", () => {
-    it("should return all grievances available in the database", async () => {
-        const grievances = await Grievance.find({}).lean()
-        const normalizedGrievances = grievances.map((grievance) => {
-            return {
-                ...grievance,
-                userId: grievance.userId.toString(),
-                _id: grievance._id.toString(),
-                createdAt: moment(grievance.createdAt).format("YYYY-MM-DD")
-            }
-        })
-        const response = request("app").get("/cityservices")
-        expect(response.statusCode).toBe(200)
-        expect(response.body).toEqual(normalizedGrievances)
-    })
-})
->>>>>>> 346d7549729aab6c33335e66a82aa97944afa186
