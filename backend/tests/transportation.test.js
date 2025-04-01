@@ -70,6 +70,47 @@ describe("POST /transportation/add", () => {
         expect(response.body.message).toBe("All fields are required");
     });
 });
+
+// describe("PUT /transport/update/:id", () => {
+//     it("should update a transport route", async () => {
+//         const route = new TransportRoute({
+//             type: "Train",
+//             route: "X to Y",
+//             time: "2:00 PM",
+//             fare: "$10",
+//             stops: "StopA, StopB",
+//             status: "Delayed",
+//         });
+//         await route.save();
+
+//         const res = await request(app)
+//             .put(`/transport/update/${route._id}`)
+//             .send({ status: "On Time" });
+
+//         expect(res.status).toBe(200);
+//         expect(res.body.updatedRoute.status).toBe("On Time");
+//     });
+// });
+
+// describe("DELETE /transport/delete/:id", () => {
+//     it("should delete a transport route", async () => {
+//         const route = await TransportRoute({
+//             type: "Metro",
+//             route: "M1",
+//             time: "9:30 AM",
+//             fare: "$3",
+//             stops: "StopX, StopY, StopZ",
+//             status: "On Time",
+//         }).create();
+//         const id = route._id.toString()
+
+//         const res = await request(app).delete(`/transport/delete/${route._id}`);
+//         expect(res.status).toBe(200);
+//         expect(res.body.message).toBe("Route deleted successfully");
+//     });
+// });
+
+
 /*
 describe("POST /transportation/routes", () => {
     it("should add a new transport route", async () => {
