@@ -33,6 +33,7 @@ router.post("/add", async (req, res) => {
     await newRoute.save();
     res.status(201).json({ message: "Route added successfully", newRoute });
   } catch (err) {
+    console.log(err);
     res.status(500).json({ message: "Server error" });
   }
 });

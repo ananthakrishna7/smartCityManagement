@@ -17,21 +17,15 @@ const testGrievance = {
 
 // Connect to the test database before running tests
 beforeEach(async () => {
-  await mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  await mongoose.connect(process.env.MONGO_URI);
 });
 
 // Clear the database after each test
 afterEach(async () => {
   await Grievance.deleteMany();
-});
-
-// Disconnect from the database after all tests are done
-afterAll(async () => {
   await mongoose.connection.close();
 });
+
 
 describe("Grievance Routes", () => {
   // Test POST /submit

@@ -2,10 +2,7 @@ const mongoose = require('mongoose');
 
 // Connect to MongoDB
 function connectDB() {
-  mongoose.connect('mongodb://127.0.0.1:27017/testDB', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  mongoose.connect('mongodb://127.0.0.1:27017/testDB')
     .then(() => console.log('Connected to MongoDB'))
     .catch((err) => console.error('MongoDB connection error:', err));
 }

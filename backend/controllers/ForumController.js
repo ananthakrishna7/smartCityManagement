@@ -9,7 +9,7 @@ exports.getHomePage = async (req, res) => { // might work
     posts = posts.map((post) => {
         return {
             ...post,
-            _id: post._id.toSting(),
+            _id: post._id.toString(),
             userId: post.userId.toString(),
             replies: post.replies.map((reply) => {
                 reply = reply.toString()
@@ -107,17 +107,19 @@ exports.editPost = async (req, res) => {
     } else if (type !== 'post') {
         return res.status(400).json({ message: 'Invalid type. Must be "post" or "reply"' });
     }
-    try {
-        const updatedPost = await ForumPost.findOneAndUpdate(
-            { _id: id, userId },
-            updateFields,
-            { new: true, runValidators: true }
-        );
-        if (!updatedPost) {
-            return res.status(404).json({ message: 'Post not found or unauthorized' });
+    else {
+        try {
+            const updatedPost = await ForumPost.findOneAndUpdate(
+                { _id: id, userId },
+                updateFields,
+                { new: true, runValidators: true }
+            );
+            if (!updatedPost) {
+                return res.status(404).json({ message: 'Post not found or unauthorized' });
+            }
+            res.status(200).json({ message: `Post with ID ${id} updated successfully`, updatedPost });
+        } catch (error) {
+            res.status(500).json({ message: 'Error updating post', error: error.message });
         }
-        res.status(200).json({ message: `Post with ID ${id} updated successfully`, updatedPost });
-    } catch (error) {
-        res.status(500).json({ message: 'Error updating post', error: error.message });
     }
 };
