@@ -2,21 +2,20 @@ const mongoose = require("mongoose")
 const moment = require("moment")
 const request = require("supertest")
 const app = require("../app.js")
-const TransportRoute = require("../models/TransportRoute.js");
-const { deserializeUser } = require("passport");
+const TransportRoute = require("../models/Transport.js");
 
 require("dotenv").config()
 
-beforeEach(async() => {
+beforeEach(async () => {
     await mongoose.connect(process.env.MONGO_URI)
 })
 
-afterEach(async() => {
+afterEach(async () => {
     await mongoose.connection.close()
 })
 
 describe("GET /transportation/routes", () => {
-    it("should return all transport routes", async() => {
+    it("should return all transport routes", async () => {
         var routes = await TransportRoute.find({}).lean()
         routes = routes.map(route => ({
             ...route,
@@ -29,7 +28,7 @@ describe("GET /transportation/routes", () => {
 })
 
 describe("POST /transportation/routes", () => {
-    it("should add a new transport route", async() => {
+    it("should add a new transport route", async () => {
         const newRoute = {
             routeName: "Test Route",
             startLocation: "Stop 1",
@@ -48,8 +47,8 @@ describe("POST /transportation/routes", () => {
         expect(response.body.newRoute.realTimeStatus).toBe(newRoute.realTimeStatus)
         await TransportRoute.deleteOne({ _id: response.body.newRoute._id }).exec()
     })
-    
-    it("should return an error if required fields are missing", async() => {
+
+    it("should return an error if required fields are missing", async () => {
         const newRoute = {
             routeName: "Test Route",
             startLocation: "Stop 1",
