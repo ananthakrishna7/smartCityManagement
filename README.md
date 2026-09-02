@@ -1,3 +1,5 @@
-**This project is now archived.**
+Smart City Management System
 ---
 The Integrated Smart City Management System is a comprehensive web-based platform designed to facilitate efficient urban governance by centralizing key city services into a single digital interface. This system includes a billing management module that allows residents to view, pay, and track their utility bills online, ensuring transparency and timely payments. A community forum promotes civic engagement by enabling residents to discuss local issues, share suggestions, and communicate directly with municipal authorities. The notice delivery system ensures timely dissemination of official announcements, events, and emergency alerts through digital notifications. Additionally, the platform offers a structured overview of city services, allowing users to request municipal services such as sanitation, water connections, and document issuance with real-time status tracking. To enhance urban mobility, the system also integrates transportation services, providing real-time information on public transport routes, schedules, and delays. By digitizing and unifying these critical components, the system aims to improve service delivery, foster community participation, and build a more connected and responsive city administration.
+
+*This project is now archived.*
